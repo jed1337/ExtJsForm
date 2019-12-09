@@ -39,12 +39,12 @@
 // });
 
 Ext.define('GridSample.view.GridSampleViewPort', {
-    requires: ['Ext.window.Window', 'Ext.grid.Panel'],
+    requires: ['Ext.window.Window', 'Ext.grid.Panel', 'Ext.form.FormPanel'],
     extend: 'Ext.container.Viewport',
     id: 'GridSampleView',
     // tpl: tpl,
-    items: [
-        Ext.create('Ext.form.FormPanel', {
+    initComponent: function () {
+        this.items = [{
             itemId: 'formPanel',
             id: 'formPanel',
             padding: "20",
@@ -61,34 +61,17 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                 // Ext.create('Ext.Img', {
                 //     src: 'images/small_welcome.jpg',
                 // }),
-                {
-                    fieldLabel: 'First name',
-                    name: 'firstName'
-                },
-                {
-                    fieldLabel: 'Middle name',
-                    name: 'middleName'
-                },
-                {
-                    fieldLabel: 'Last name',
-                    name: 'lastName'
-                },
+                {fieldLabel: 'First name', name: 'firstName'},
+                {fieldLabel: 'Middle name', name: 'middleName'},
+                {fieldLabel: 'Last name', name: 'lastName'},
                 {
                     xtype: 'combobox',
                     fieldLabel: 'position',
                     name: 'position',
                     queryMode: 'local',
-                    // store : 'GridSample.store.UsersStore',
-                    store: Ext.create('Ext.data.Store', {
-                        fields: ['position'],
-                        data: [
-                            {"position": "Programmer"},
-                            {"position": "Software Engineer"},
-                            {"position": "Software Analyst"}
-                        ]
-                    }),
+                    store : 'GridSample.store.PositionsStore',
                     displayField: 'position',
-                    valueField:'position',
+                    valueField: 'position',
                     editable: false
                 },
                 {
@@ -106,5 +89,7 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                 {text: 'Reset', id: 'resetButton',},
                 {text: 'Submit', id: 'submitButton',}
             ]
-        })]
+        }];
+        this.callParent(arguments);
+    }
 });
