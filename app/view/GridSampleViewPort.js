@@ -1,10 +1,3 @@
-const tpl = Ext.create('Ext.Template', [
-        'Hello {firstName} {middleName} {lastName}!',
-        ' Nice to meet you!',
-        ' You are a {rb} {position}.',
-        ' Please bring food from the Christmas party to the office.'
-    ]
-);
 
 // Ext.define('GridSample.view.GridSampleViewPort', {
 //     requires: ['Ext.window.Window', 'Ext.grid.Panel'],
@@ -50,12 +43,13 @@ Ext.define('GridSample.view.GridSampleViewPort', {
     requires: ['Ext.window.Window', 'Ext.grid.Panel'],
     extend: 'Ext.container.Viewport',
     id: 'GridSampleView',
-    tpl: tpl,
+    // tpl: tpl,
     items: [
         Ext.create('Ext.form.FormPanel', {
             itemId: 'formPanel',
+            id: 'formPanel',
             padding: "20",
-            height: 500,
+            height: 300,
             width: 400,
             frame: true,
             layout: 'anchor',
@@ -65,9 +59,9 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                 labelWidth: 65
             },
             items: [
-                Ext.create('Ext.Img', {
-                    src: 'images/small_welcome.jpg',
-                }),
+                // Ext.create('Ext.Img', {
+                //     src: 'images/small_welcome.jpg',
+                // }),
                 {
                     fieldLabel: 'First name',
                     name: 'firstName'
@@ -109,19 +103,11 @@ Ext.define('GridSample.view.GridSampleViewPort', {
             buttons: [
                 {
                     text: 'Reset',
-                    handler: function () {
-                        this.up('form').getForm().reset();
-                    }
+                    id: 'resetButton',
                 },
                 {
                     text: 'Submit',
-                    handler: function () {
-                        const formPanel = this.up('#formPanel');
-                        const vals = formPanel.getValues();
-                        const greeting = tpl.apply(vals);
-
-                        Ext.Msg.alert('Hello!', greeting);
-                    }
+                    id: 'submitButton',
                 }
             ]
         })]
