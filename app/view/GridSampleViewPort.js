@@ -1,4 +1,3 @@
-
 // Ext.define('GridSample.view.GridSampleViewPort', {
 //     requires: ['Ext.window.Window', 'Ext.grid.Panel'],
 //     extend: 'Ext.container.Viewport',
@@ -75,9 +74,11 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                     name: 'lastName'
                 },
                 {
-                    xtype: 'combo',
-                    fieldLabel: 'Position',
+                    xtype: 'combobox',
+                    fieldLabel: 'position',
                     name: 'position',
+                    queryMode: 'local',
+                    // store : 'GridSample.store.UsersStore',
                     store: Ext.create('Ext.data.Store', {
                         fields: ['position'],
                         data: [
@@ -87,6 +88,7 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                         ]
                     }),
                     displayField: 'position',
+                    valueField:'position',
                     editable: false
                 },
                 {
@@ -101,14 +103,8 @@ Ext.define('GridSample.view.GridSampleViewPort', {
                 },
             ],
             buttons: [
-                {
-                    text: 'Reset',
-                    id: 'resetButton',
-                },
-                {
-                    text: 'Submit',
-                    id: 'submitButton',
-                }
+                {text: 'Reset', id: 'resetButton',},
+                {text: 'Submit', id: 'submitButton',}
             ]
         })]
 });
